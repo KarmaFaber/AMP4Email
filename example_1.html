@@ -1,0 +1,200 @@
+<!doctype html>
+<html ⚡4email>
+<head>
+<meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <style amp4email-boilerplate>body{visibility:hidden}</style>
+      
+  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+
+  <!-- 
+    ## Introduction 
+    Small interactive UI animations communicate state and purpose to users. A common case is a hamburger menu button that animates into an "X" when open.
+	This animation communicates that the user can press the same button again to close the menu. 
+
+    ## CSS animations
+    Below is the custom styles and CSS animations for the hamburger menu: 
+  -->
+    <style amp-custom>
+      .hamburger_wrapper {
+        padding: 5px;
+        z-index: 10;
+      }
+
+      #hamburger {
+        width: 60px;
+        height: 45px;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+
+      }
+      #hamburger span {
+        display: block;
+        position: absolute;
+        height: 9px;
+        width: 100%;
+        background:#750d37;
+        border-radius: 9px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .5s ease-in-out;
+      }
+
+      #hamburger span:nth-child(1) {
+        top: 0px;
+        transform-origin: left center;
+      }
+
+      #hamburger span:nth-child(2) {
+        top: 21px;
+        transform-origin: left center;
+      }
+
+      #hamburger span:nth-child(3) {
+        top: 42px;
+        transform-origin: left center;
+      }
+
+      #hamburger.close span:nth-child(1) {
+        transform: rotate(45deg);
+      }
+
+      #hamburger.close span:nth-child(2) {
+        width: 0%;
+        opacity: 0;
+        transition: .1s;
+      }
+
+      #hamburger.close span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+      #nav-menu {
+        position: relative;
+        transform: translateX(-100vw);
+        opacity: 0.9;
+        z-index: 10;
+        transition: transform .5s ease, opacity ease .1s;
+        
+      }
+
+      #nav-menu.now-active {
+        transform: translateX(0);
+        transition: transform .5s ease, opacity ease .2s;
+        opacity: 0.85;
+        background-color:#B3DEC1;
+      }
+
+      .nav-list {
+        padding: 10px;
+        list-style-type: none;
+        font-size: 1.2em;
+        
+      }
+      
+      
+      /*my class*/
+      .titlestyle {
+        position: relative;
+        
+      }
+      
+      /*tab pannels style*/
+      :root {
+          --color-primary: #005AF0;
+          --space-1: .5rem;  /* 8px */
+          --space-4: 2rem;   /* 32px */
+        }
+
+        /* Styles for the flex layout based tabs */
+        amp-selector[role=tablist].tabs-with-flex {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        amp-selector[role=tablist].tabs-with-flex [role=tab] {
+            flex-grow: 1;
+            /* custom styling, feel free to change */
+            text-align: center;
+            padding: var(--space-1);
+        }
+        amp-selector[role=tablist].tabs-with-flex [role=tab][selected] {
+            outline: none;
+            /* custom styling, feel free to change */
+            border-bottom: 2px solid var(--color-primary);
+        }
+        amp-selector[role=tablist].tabs-with-flex [role=tabpanel] {
+            display: none;
+            width: 100%;
+            order: 1; /* must be greater than the order of the tab buttons to flex to the next line */
+            /* custom styling, feel free to change */
+            padding: var(--space-4);
+        }
+        amp-selector[role=tablist].tabs-with-flex [role=tab][selected] + [role=tabpanel] {
+            display: block;
+        }
+
+        /* Styles for the selector based tabs */
+        amp-selector[role=tablist].tabs-with-selector {
+            display: flex;
+        }
+        amp-selector[role=tablist].tabs-with-selector [role=tab][selected] {
+            outline: none;
+            /* custom styling, feel free to change */
+            border-bottom: 2px solid var(--color-primary);
+        }
+        amp-selector[role=tablist].tabs-with-selector {
+            display: flex;
+        }
+        amp-selector[role=tablist].tabs-with-selector [role=tab] {
+          /* custom styling, feel free to change */
+          width: 100%;
+          text-align: center;
+          padding: var(--space-1);
+        }
+        amp-selector.tabpanels [role=tabpanel] {
+          display: none;
+          /* custom styling, feel free to change */
+          padding: var(--space-4);
+        }
+        amp-selector.tabpanels [role=tabpanel][selected] {
+          outline: none;
+          display: block;
+        }
+    </style>
+  
+</head>
+<body>
+ <div>
+   
+   <h2 class="titlestyle" align=center>
+     AMP⚡4email playground resources.
+   </h2>
+  <div class="hamburger_wrapper">
+    <div id="hamburger" tabindex="1" role="button" on="tap:hamburger.toggleClass(class='close'),nav-menu.toggleClass(class='now-active')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <div id="nav-menu">
+    <amp-selector class="tabs-with-flex" role="tablist">
+      <div id="tab1" role="tab" aria-controls="tabpanel1" option selected>AMP</div>
+      <div id="tabpanel1" role="tabpanel" aria-labelledby="tab1">
+      <ul class="nav-list">
+      <li><a href="https://amp.dev/">AMP home page</a></li>
+      <li><a href="https://playground.amp.dev/">AMP PlayGround</a></li>
+      <li><a href="https://validator.ampproject.org/#htmlFormat=AMP4EMAIL">The AMP Validator</a></li>
+    </ul>
+      </div>
+      <div id="tab2" role="tab" aria-controls="tabpanel2" option>Google</div>
+      <div id="tabpanel2" role="tabpanel" aria-labelledby="tab2">
+      <ul class="nav-list">
+      <li><a href="https://amp.gmail.dev/playground/">Google PlayGround</a></li>
+    </ul>
+    </div>
+    </amp-selector>
+
+  </div>
+  </div>
+  </body></html>
